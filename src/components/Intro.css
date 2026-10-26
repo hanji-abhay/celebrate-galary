@@ -1,0 +1,459 @@
+
+.intro-scene {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  overflow: hidden;
+  background: #28352d;
+  color: #f8f1e5;
+  animation: intro-arrive 0.8s ease-out both;
+}
+
+.intro-landscape {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.intro-hills {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: intro-landscape-drift 9s ease-in-out both;
+}
+
+.intro-sun {
+  position: absolute;
+  z-index: -1;
+  top: 19%;
+  right: 21%;
+  width: clamp(100px, 16vw, 210px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f4d5a1;
+  filter: blur(2px);
+  opacity: 0.12;
+}
+
+.intro-haze {
+  position: absolute;
+  z-index: 1;
+  width: 65vw;
+  height: 24vh;
+  border-radius: 50%;
+  background: #f1d3aa;
+  filter: blur(65px);
+  opacity: 0.1;
+}
+
+.intro-haze-one {
+  bottom: 8%;
+  left: -20%;
+}
+
+.intro-haze-two {
+  right: -20%;
+  bottom: 20%;
+  animation: intro-haze-drift 7s ease-in-out infinite alternate;
+}
+
+.intro-grain {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+}
+
+.intro-leaf {
+  position: absolute;
+  z-index: 5;
+  top: 19%;
+  left: 49%;
+  width: clamp(38px, 5vw, 68px);
+  filter: drop-shadow(0 8px 12px #1b211c66);
+  transform-origin: 50% 20%;
+  animation: intro-leaf-fall 3.1s cubic-bezier(0.45, 0, 0.55, 1) 0.45s both;
+}
+
+.intro-leaf-one svg {
+  width: 100%;
+  overflow: visible;
+}
+
+.intro-viewfinder {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: clamp(170px, 25vw, 320px);
+  aspect-ratio: 1.15;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.1);
+  animation: intro-finder-appear 0.8s ease-out 1.65s forwards;
+}
+
+.finder-corner {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  border-color: #f8f1e5;
+  border-style: solid;
+}
+
+.finder-tl {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+
+.finder-tr {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+
+.finder-bl {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+
+.finder-br {
+  right: 0;
+  bottom: 0;
+  border-width: 0 1px 1px 0;
+}
+
+.finder-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #f8f1e5b0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.finder-label {
+  position: absolute;
+  right: 0;
+  bottom: -27px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: #f8f1e5c9;
+}
+
+.intro-shutter {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 140vmax;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  animation: intro-shutter-close 0.65s ease-in 3.25s forwards;
+}
+
+.shutter-blade {
+  position: absolute;
+  inset: 0;
+  background: #19221c;
+  clip-path: polygon(50% 50%, 0 0, 50% 0);
+  transform-origin: center;
+}
+
+.shutter-blade-two {
+  transform: rotate(60deg);
+}
+
+.shutter-blade-three {
+  transform: rotate(120deg);
+}
+
+.shutter-blade-four {
+  transform: rotate(180deg);
+}
+
+.shutter-blade-five {
+  transform: rotate(240deg);
+}
+
+.shutter-blade-six {
+  transform: rotate(300deg);
+}
+
+.intro-flash {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  pointer-events: none;
+  background: #fff8e9;
+  opacity: 0;
+  animation: intro-camera-flash 0.5s ease-out 3.62s both;
+}
+
+.intro-signature {
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: intro-signature-reveal 0.5s ease-out 4.1s forwards;
+}
+
+.intro-letter-s {
+  width: clamp(70px, 10vw, 122px);
+  height: auto;
+  overflow: visible;
+  color: #f8f1e5;
+}
+
+.intro-s-stroke {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: intro-trace-s 1.5s ease-in-out 4.35s forwards;
+}
+
+.intro-s-leaf,
+.intro-s-vein {
+  opacity: 0;
+  animation: intro-leaf-detail 0.6s ease-out 5.7s forwards;
+}
+
+.intro-word-rest {
+  margin: 12px 0 0 -5px;
+  color: #f8f1e5;
+  font-family: "Brush Script MT", "Segoe Script", "Apple Chancery", cursive;
+  font-size: clamp(54px, 8vw, 100px);
+  font-style: italic;
+  letter-spacing: -0.07em;
+  opacity: 0;
+  animation: intro-word-write 1s ease-out 5.25s forwards;
+}
+
+.intro-word-rest span {
+  color: #d99b70;
+}
+
+.intro-direction {
+  position: absolute;
+  z-index: 12;
+  top: calc(50% + clamp(65px, 8vw, 100px));
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: max-content;
+  color: #f8f1e5;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  animation: intro-direction-reveal 0.6s ease-out 6.4s forwards;
+}
+
+.intro-direction svg {
+  width: 42px;
+  animation: intro-arrow-glide 1.2s ease-in-out 7s infinite alternate;
+}
+
+.intro-caption {
+  position: absolute;
+  z-index: 12;
+  right: 5%;
+  bottom: 30px;
+  left: 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #f8f1e5b3;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  opacity: 0;
+  animation: intro-caption-reveal 0.6s ease-out 1s forwards;
+}
+
+.intro-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes intro-arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes intro-landscape-drift {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.13); }
+}
+
+@keyframes intro-haze-drift {
+  from { transform: translateX(-3%); }
+  to { transform: translateX(5%); }
+}
+
+@keyframes intro-leaf-fall {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, -30px) rotate(-20deg);
+  }
+  10% { opacity: 1; }
+  35% {
+    transform: translate(38px, 95px) rotate(90deg);
+  }
+  65% {
+    transform: translate(-35px, 195px) rotate(210deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 260px) rotate(340deg);
+  }
+}
+
+@keyframes intro-finder-appear {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes intro-shutter-close {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+@keyframes intro-camera-flash {
+  0% { opacity: 0; }
+  15% { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+
+@keyframes intro-signature-reveal {
+  to { opacity: 1; }
+}
+
+@keyframes intro-trace-s {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes intro-leaf-detail {
+  to { opacity: 1; }
+}
+
+@keyframes intro-word-write {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes intro-direction-reveal {
+  to {
+    opacity: 0.85;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes intro-arrow-glide {
+  from { transform: translateX(0); }
+  to { transform: translateX(5px); }
+}
+
+@keyframes intro-caption-reveal {
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .intro-leaf {
+    left: 44%;
+  }
+
+  .intro-viewfinder {
+    width: 58vw;
+  }
+
+  .intro-caption {
+    font-size: 7px;
+    letter-spacing: 0.1em;
+  }
+
+  .intro-direction {
+    gap: 9px;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+  }
+
+  
+  .intro-tree {
+    transform: translateX(12px) scale(1.35);
+    transform-origin: 15% 100%;
+  }
+
+  .intro-hills {
+    object-position: 42% center;
+  }
+
+  .intro-leaf {
+    left: 42%;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-scene,
+  .intro-hills,
+  .intro-haze,
+  .intro-leaf,
+  .intro-viewfinder,
+  .intro-shutter,
+  .intro-flash,
+  .intro-signature,
+  .intro-s-stroke,
+  .intro-s-leaf,
+  .intro-s-vein,
+  .intro-word-rest,
+  .intro-direction,
+  .intro-direction svg,
+  .intro-caption {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+}
